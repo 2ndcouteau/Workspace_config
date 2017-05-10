@@ -1,0 +1,23 @@
+"*":
+  core:
+    audioBeep: false
+    disabledPackages: [
+      "snippets"
+      "autocomplete-snippets"
+    ]
+    telemetryConsent: "no"
+  editor:
+    autoIndentOnPaste: false
+    invisibles: {}
+    showIndentGuide: true
+    showInvisibles: true
+    softTabs: false
+    tabLength: 4
+    tabType: "hard"
+  "exception-reporting":
+    userId: "19d15e6a-94a6-5d4d-4dfb-3d85e29a8b18"
+  linter: {}
+  minimap: {}
+  "norminette-linter": {}
+  welcome:
+    showOnStartup: false

@@ -1,0 +1,132 @@
+;******************************************************************************;
+;                                                                              ;
+;                                                         :::      ::::::::    ;
+;    myemacs                                            :+:      :+:    :+:    ;
+;                                                     +:+ +:+         +:+      ;
+;    By: qrosa <qrosa@student.42.fr>                +#+  +:+       +#+         ;
+;                                                 +#+#+#+#+#+   +#+            ;
+;    Created: 2017/05/10 17:28:28 by qrosa             #+#    #+#              ;
+;    Updated: 2017/05/10 17:38:09 by qrosa            ###   ########.fr        ;
+;                                                                              ;
+;******************************************************************************;
+
+;; Sauvegarde les fichiers *~ dans le dossier .emacs.d/
+;; Save file *~ in .emacs.d/
+(setq backup-directory-alist
+      '(("." . "~/.emacs.d")))
+(setq backup-by-copying 1)
+
+;; Affiche la position du curseur
+;; Print cursor postion
+(column-number-mode)
+(line-number-mode 1)
+
+;; Colorise en Rouge les espaces en fin de ligne
+;; Colorise end line space in red
+(setq show-trailing-whitespace t)
+(setq-default show-trailing-whitespace t)
+
+;; Couper le bip sonore
+;; Disable Bip warning
+(setq ring-bell-function 'ignore)
+
+;; Inhiber l'affichage du message d'accueil
+;; Disable Welcome message
+(setq inhibit-startup-message t)
+
+;; Affiche l'heure dans la barre du bas
+;; Print hours in the bottom bar
+(setq display-time-day-and-date t)
+(setq display-time-24hr-format t)
+(display-time)
+(setq european-calendar-style t)
+
+;; Surlignage d'une région sélectionnée
+;; Highlight selected part
+(transient-mark-mode t)
+
+;; Montre les parenthèses
+;; Show parentheses
+(show-paren-mode 1)
+
+;; Descent/monte la fenetre de 2 lines quand le curseur est au bout
+;; Limite scroll movement to 2 line up/down
+(setq scroll-step 3)
+
+;; Redefinition du pave numerique
+;; Reset numerical pad
+(global-set-key (kbd "<kp-divide>") "/")
+(define-key key-translation-map [kp-0] [?0])
+(define-key key-translation-map [kp-1] [?1])
+(define-key key-translation-map [kp-2] [?2])
+(define-key key-translation-map [kp-3] [?3])
+(define-key key-translation-map [kp-4] [?4])
+(define-key key-translation-map [kp-5] [?5])
+(define-key key-translation-map [kp-6] [?6])
+(define-key key-translation-map [kp-7] [?7])
+(define-key key-translation-map [kp-8] [?8])
+(define-key key-translation-map [kp-9] [?9])
+(define-key key-translation-map [kp-enter] [13])
+(define-key key-translation-map [kp-add] [?+])
+(define-key key-translation-map [kp-subtract] [?-])
+(define-key key-translation-map [kp-multiply] [?*])
+(define-key key-translation-map [M-O X] [?=])
+(global-set-key (kbd "M-o x") "=")
+(global-set-key (kbd "M-O n") ".")
+
+;; Evite de taper 'yes' 'no' pour la sauvegarde
+;; Disable confirmation save
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; Commenter ou non le texte selectionné
+;; Enable de comment the text selected
+(global-set-key (kbd "C-c c") 'comment-dwim)
+
+;; Permet le copier/coller entre emacs et les autres fonctions
+;; Enable copy/paste between emacs session
+(global-set-key (kbd "C-c x") 'pbcopy)
+(global-set-key (kbd "C-c v") 'pbpaste)
+(global-set-key (kbd "C-c w") 'pbcut)
+
+(defun pbcopy ()
+    (interactive)
+      (call-process-region (point) (mark) "pbcopy")
+          (setq deactivate-mark t))
+
+(defun pbpaste ()
+    (interactive)
+      (call-process-region (point) (if mark-active (mark) (point)) "pbpaste" t t))
+
+(defun pbcut ()
+    (interactive)
+      (pbcopy)
+          (delete-region (region-beginning) (region-end)))
+
+;; Autorise la souris
+;; Enable mouse
+(unless window-system
+(require 'mouse)
+(xterm-mouse-mode t)
+(global-set-key [mouse-4] '(lambda ()
+(interactive)
+(scroll-down 1)))
+(global-set-key [mouse-5] '(lambda ()
+(interactive)
+(scroll-up 1)))
+(defun track-mouse (e))
+(setq mouse-sel-mode t)
+)
+
+;; Le curseur reste toujours à la même position quand on scroll
+;; Cursor stay on the same position when you scroll
+;; ##  (setq scroll-preserve-screen-position t)
+
+;; Enleve automatiquement les espaces en fin de ligne des qu'on sauvegarde
+;; Remove automatically endline space when you save
+ (add-hook 'before-save-hook 'delete-trailing-whitespace)
+(put 'scroll-left 'disabled nil)
+
+;; Indentation automatique en c-mode
+;; Automatic indentation in C-mode
+(define-key global-map (kbd "RET") 'newline-and-indent)
+
