@@ -19,3 +19,166 @@
 # If you are unfamiliar with CSON, you can read more about it in the
 # Atom Flight Manual:
 # https://atom.io/docs/latest/using-atom-basic-customization#cson
+
+
+# Your snippets
+#
+# Atom snippets allow you to enter a simple prefix in the editor and hit tab to
+# expand the prefix into a larger code block with templated values.
+#
+# You can create a new snippet in this file by typing "snip" and then hitting
+# tab.
+#
+# An example CoffeeScript snippet to expand log to console.log:
+#
+# '.source.coffee':
+#   'Console log':
+#     'prefix': 'log'
+#     'body': 'console.log $1'
+#
+# Each scope (e.g. '.source.coffee' above) can only be declared once.
+#
+# This file uses CoffeeScript Object Notation (CSON).
+# If you are unfamiliar with CSON, you can read more about it in the
+# Atom Flight Manual:
+# http://flight-manual.atom.io/using-atom/sections/basic-customization/#_cson
+
+'.source.cpp, .source.c':
+	'main()':
+		'prefix': 'main'
+		'body': """
+int main(void)
+{
+	$1
+	return (0);
+}
+"""
+
+
+	'#ifndef … #define … #endif':
+		'prefix': 'hdef'
+		'body': '#ifndef ${1:SYMBOL}\n# define $1\n\n$2\n\n#endif'
+
+	'#ifndef - Trash':
+		'prefix': 'def'
+		'body': 'define'
+
+	'#include <>':
+		'prefix': 'Inc'
+		'body': '#include <${1:.h}>'
+	'#include ""':
+		'prefix': 'inc'
+		'body': '#include "${1:.h}"'
+
+
+	'For Loop':
+		'prefix': 'for'
+		'body': 'for (size_t ${1:i} = 0; ${1:i} < ${2:count}; ${1:i}${3:++}) {\n\t$4\n}'
+
+	'While Loop':
+		'prefix': 'while'
+		'body': """
+while ($1)
+{
+	$2
+}
+"""
+
+	'If Condition':
+		'prefix': 'if'
+		'body': """
+if ($1)
+	$2
+"""
+
+	'If Else':
+		'prefix': 'ife'
+		'body': """
+if ($1)
+	$2
+else
+	$3
+"""
+
+
+	'void':
+		'prefix': 'void'
+		'body': 'void\t'
+
+	'any function':
+		'prefix': 'func'
+		'body': """
+$1	$2($3)
+{
+	$4
+	return ();
+}
+"""
+
+
+
+
+
+
+
+
+
+
+'.source.cpp, .source.objcpp':
+
+	'Class_definition':
+		'prefix': 'clcpp'
+		'body': """
+#include "$1.hpp"
+
+
+$1::$1(void)
+{
+//	std::cout << " $1 Constructor " << std::endl;
+	return;
+}
+
+$1::~$1(void)
+{
+//	std::cout << " $1 Destructor " << std::endl;
+	return;
+}
+
+$2
+"""
+
+	'Class_declaration':
+		'prefix': 'cl'
+		'body': """
+ifndef $1_CLASS_HPP
+define $1_CLASS_HPP
+
+include <iostream>
+
+class ${2:name_t}
+{
+	private:
+		$3
+
+	public:
+		$2(void);
+		~$2(void);
+};
+"""
+
+
+	'std::cout':
+		'prefix': 'cout'
+		'body': 'std::cout << ${1:"..."} << std::endl;'
+
+	'std::cin':
+		'prefix': 'cin'
+		'body': 'std::cin << ${1:"..."} << std::endl;'
+
+	'std::cerr':
+		'prefix': 'cerr'
+		'body': 'std::cerr << ${1:"..."} << std::endl;'
+
+	'std::string':
+		'prefix': 'str'
+		'body': 'std::string\t'
