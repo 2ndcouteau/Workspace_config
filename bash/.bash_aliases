@@ -9,6 +9,7 @@ alias shutdown='sudo shutdown -h now'
 alias kl='emacs'
 alias mm='mkdir'
 alias ..='cd ..'
+alias cp='gcp'
 
 alias clean='make fclean ; find . \( -name "#*#" -o -name "*~" -o -name "*.dSYM" -o -name ".~lock.*" -o -name ".#*" -o -name "*.o" -o -name "a.out*" -o -name ".DS_Store"  -o -name ".vim" -o -name ".viminfo"  -o -name  "pgadmin.log"  \) | xargs rm -rf ; clear ; ll'
 
@@ -21,5 +22,14 @@ alias dockerclri="sudo docker images -a | grep none | awk '{print $3}' | xargs d
 alias ga='git add'
 alias gs='git status'
 alias gc='git commit -m'
+alias gk='git checkout'
+alias gb='git branch'
 alias gp='git push'
 alias gsave='git commit -m "Save" && git push'
+
+##APT
+alias up='sudo apt-get update && sudo apt-get upgrade'
+alias apts='apt-cache search'
+
+##VPN
+alias pvpn='sudo pvpn'
