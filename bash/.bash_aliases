@@ -30,6 +30,7 @@ alias gsave='git commit -m "Save" && git push'
 ##APT
 alias up='sudo apt-get update && sudo apt-get upgrade'
 alias apts='apt-cache search'
+alias aptl='sudo emacs /etc/apt/sources.list'
 
 ##VPN
 alias pvpn='sudo pvpn'
