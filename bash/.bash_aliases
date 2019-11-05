@@ -10,6 +10,8 @@ alias kl='emacs'
 alias mm='mkdir'
 alias ..='cd ..'
 alias cp='gcp'
+alias grep="grep --color=auto"
+alias rg="rg --color=auto"
 
 alias clean='make fclean ; find . \( -name "#*#" -o -name "*~" -o -name "*.dSYM" -o -name ".~lock.*" -o -name ".#*" -o -name "*.o" -o -name "a.out*" -o -name ".DS_Store"  -o -name ".vim" -o -name ".viminfo"  -o -name  "pgadmin.log"  \) | xargs rm -rf ; clear ; ll'
 
