@@ -29,6 +29,16 @@ alias gk='git checkout'
 alias gb='git branch'
 alias gp='git push'
 alias gsave='git commit -m "Save" && git push'
+alias gch='echo "
+feat : a new feature
+fix : a bug fix
+docs : changes to documentation
+style : formatting, missing semi-colons, etc.; no code change
+refactor : refactoring production code
+test : adding tests, refactoring test; no production code change
+chore : updating build tasks, package manager configs, etc.; no production code change
+"'
+
 
 ##APT/SNAP
 alias up='sudo apt-get update && sudo apt-get upgrade && sudo snap refresh'
