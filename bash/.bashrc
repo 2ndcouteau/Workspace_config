@@ -56,12 +56,32 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+# GIT PROMPT PARAMS
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWUPSTREAM=verbose
+GIT_PS1_DESCRIBE_STYLE=branch
+
+# KUBE PROMPT PARAMS
+KUBE_PS1_NS_ENABLE=false
+KUBE_PS1_PREFIX=''
+KUBE_PS1_SEPARATOR=''
+KUBE_PS1_DIVIDER=''
+KUBE_PS1_SUFFIX=''
+KUBE_PS1_SYMBOL_ENABLE=false
+
 if [ "$color_prompt" = yes ]; then
-    PS1='\[\033[01;31m\]\$${debian_chroot:+\[\033[00m\]($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;31m\]$\[\033[00m\]'
+    PS1='\[\033[01;31m\]\$${debian_chroot:+\[\033[00m\]($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01m\]$(kube_ps1) \[\033[01;34m\]\w\[\033[01;32m\]$(__git_ps1)\[\033[01;31m\]$\[\033[00m\]'
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
+
+# Apply GIT and KUBE config PS1
+source $HOME/.config/git-prompt.sh
+source $HOME/.config/kube-ps1/kube-ps1.sh
+#source<(kubectl completion bash)
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -114,3 +134,16 @@ export PAGER=most;
 
 ## Option for touchpad
 # synclient TapButton1=1;
+
+
+export PATH=$PATH:$HOME/go/bin:
+export GOPATH=$HOME/go
+export GOPROXY="https://rosaq:APG7hxWcH3GCjjwHwyTfqJ9xiu@artifactory.rennes.eu.thmulti.com/artifactory/api/go/trinity-go"
+export GOSUMDB=off
+
+# Redefine default editor for `kubectl edit`
+export KUBE_EDITOR=emacs
+
+# Define default Editor for the all system
+export VISUAL=emacs
+export EDITOR="$VISUAL"
